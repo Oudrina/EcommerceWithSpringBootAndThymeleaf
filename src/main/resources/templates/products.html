@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script src="script.js"></script>
+
+    <title>Product Page</title>
+
+</head>
+<body>
+<header th:fragment="header">
+
+    <nav>
+        <a th:href="@{product/all}">Home</a>
+        <a href="">Shop</a>
+        <a href="">Contact</a>
+        <a href="">About Us</a>
+    </nav>
+
+    <h3 class="logo">Logo</h3>
+
+    <div class="icons " >
+        <span><i class='bx bx-sun' ></i></span>
+        <span class="cartIcon"><i class='bx bx-cart'></i>
+              <span class="quantity">0</span>
+              </span>
+        <span><i class='bx bx-user'></i></span>
+
+    </div>
+</header>
+
+<!-- Categoeries in Perfume -->
+
+<div class="categories">
+    <div class="single-category">
+        <a href="">Floral</a>
+    </div>
+
+    <div class="single-category">
+        <a href="">Fresh</a>
+    </div>
+    <div class="single-category">
+        <a href="">Woody</a>
+    </div>
+
+    <div class="single-category">
+        <a href="">Oreintal</a>
+    </div>
+
+    <div class="single-category">
+        <a href="">Gourmaid</a>
+    </div>
+
+    <div class="single-category">
+        <a href="">Aquatic</a>
+    </div>
+
+    <div class="single-category">
+        <a href="">Green</a>
+    </div>
+
+
+
+</div>
+
+<div class="product-wrapper">
+    <div class="product" th:each="product : ${products}">
+        <img src="images/product1.jpg" alt="Product1">
+        <div class="product-description">
+            <a th:href="@{getProduct/{productId}(productId = ${product.productId})}">
+                <span  th:text="${product.name}" class="name" >Perfume</span>
+            </a><br>
+            <span class="price" th:text="${product.price}">$400.0</span>
+
+        </div>
+        <div class="cartButton">
+            <div class="hrt">
+                <span><i class='bx bxs-heart'></i></span>
+            </div>
+
+            <div class="cart">
+                <span><i class='bx bx-cart-alt'></i></span>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<!-- Add to  cart -->
+<div class="sidebar" id="sidebar" th:fragment="sidebar">
+
+    <h1 class="Item-list">
+        Cart Items
+    </h1>
+
+    <div class="cartItems" th:each="item : ${shopCart}">
+
+        <img src="images/product1.jpg" alt="product1">
+        <span>
+           <h5 class="name" th:text="${item.product.name}">Perfume</h5>
+           <p class="price" >$300</p>
+        </span>
+
+        <input  type="number" name="quantity" id="quantity" placeholder="1">
+
+        <button class="btn">delete</button>
+    </div>
+
+
+    <div class="totalPrice">
+        <span>0</span>
+    </div>
+
+    <div class="checkout">
+        <span>checkout</span>
+    </div>
+
+
+</div>
+
+<footer class="footer">
+
+    <p>&copy; 2025 ShopEase. All Rights Reserved.</p>
+    <div class="contact">
+        <h6>Contactus</h6>
+        <p>0542885742</p>
+        <p>0542885742</p>
+
+
+    </div>
+
+</footer>
+
+<script>
+
+
+    let openCart = document.querySelector(".cartIcon");
+    let sidebar = document.querySelector(".sidebar");
+    let heart =document.querySelector(".hrt");
+
+    openCart.addEventListener("click",function(){
+        sidebar.classList.toggle("active");
+    })
+
+
+        heart.addEventListener("click",function(){
+        heart.classList.toggle("liked")
+    });
+
+
+
+</script>
+
+</body>
+</html>

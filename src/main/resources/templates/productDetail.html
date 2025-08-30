@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Product Details</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+        <link th:href="@{/css/productdetail.css}" rel="stylesheet">
+
+</head>
+<body >
+<div class="body">
+    <div th:insert="~{products :: header}">
+
+    </div>
+
+    <div class="product-detail-wrapper">
+        <img th:src="@{/product1.png}" alt="Product1">
+        <div class="product-detail">
+            <p class="name" th:text="${product.name}">Perfume</p>
+            <p class="descript">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Fuga veritatis non maxime beatae odio laudantium </p>
+            <p class="stockAvailaibity">In Stock</p>
+            <input type="number" name="quantity" id="quantity" placeholder="1"  class="quantity" >
+            <p class="price" th:text="  ${product.price}" >$200.00</p>
+
+            <div class="btn">
+                <a th:href="@{card/add}">Add to Cart</a>
+            </div>
+        </div>
+
+    </div>
+
+    <aside th:insert="~{products :: sidebar}">
+
+    </aside>
+</div>
+
+<script>
+
+
+    let openCart = document.querySelector(".cartIcon");
+    let sidebar = document.querySelector(".sidebar");
+    let heart =document.querySelector(".hrt");
+
+    openCart.addEventListener("click",function(){
+        sidebar.classList.toggle("active");
+    })
+
+
+        heart.addEventListener("click",function(){
+        heart.classList.toggle("liked")
+    });
+
+
+
+</script>
+
+</body>
+</html>
