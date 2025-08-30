@@ -18,12 +18,4 @@ public class ShopCart {
     private List<CartItem> itemList = new ArrayList<>();
 
 
-//    public double getTotalAmount() {
-//        for (CartItem item : itemList) {
-//           totalAmount = totalAmount + item.getTotal();
-//        }
-//         return totalAmount;
-//    }
-
-
 }

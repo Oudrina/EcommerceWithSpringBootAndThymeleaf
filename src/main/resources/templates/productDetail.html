@@ -7,10 +7,10 @@
 
     <title>Product Details</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
-        <link th:href="@{/css/productdetail.css}" rel="stylesheet">
+    <link th:href="@{/css/productdetail.css}" rel="stylesheet">
 
 </head>
-<body >
+<body>
 <div class="body">
     <div th:insert="~{products :: header}">
 
@@ -24,11 +24,11 @@
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Fuga veritatis non maxime beatae odio laudantium </p>
             <p class="stockAvailaibity">In Stock</p>
-            <input type="number" name="quantity" id="quantity" placeholder="1"  class="quantity" >
-            <p class="price" th:text="  ${product.price}" >$200.00</p>
+            <input type="number" name="quantity" id="quantity" placeholder="1" class="quantity">
+            <p class="price" th:text="  ${product.price}">$200.00</p>
 
             <div class="btn">
-                <a th:href="@{card/add}">Add to Cart</a>
+                <a th:href="@{card/addCard}">Add to Cart</a>
             </div>
         </div>
 
@@ -54,7 +54,6 @@
         heart.addEventListener("click",function(){
         heart.classList.toggle("liked")
     });
-
 
 
 </script>

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    private ProductRepo productRepo;
+    private final ProductRepo productRepo;
 
     public  ProductService(ProductRepo productRepo){
         this.productRepo =productRepo;

@@ -21,12 +21,9 @@ public class CartItem {
     }
 
 
-
-
     public double getSubTotal() {
-     return    product.getPrice() * quantity;
+        return product.getPrice() * quantity;
     }
-
 
 
 }

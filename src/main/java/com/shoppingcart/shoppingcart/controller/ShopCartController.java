@@ -3,6 +3,7 @@ package com.shoppingcart.shoppingcart.controller;
 import com.shoppingcart.shoppingcart.model.CartItem;
 import com.shoppingcart.shoppingcart.model.Product;
 import com.shoppingcart.shoppingcart.model.ShopCart;
+import com.shoppingcart.shoppingcart.service.CartItemService;
 import com.shoppingcart.shoppingcart.service.ProductService;
 import com.shoppingcart.shoppingcart.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,46 +15,49 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+//@RestController
+@Controller
 @RequestMapping("cart")
 public class ShopCartController {
 
-    private ShoppingCartService shoppingCartService;
-    private ProductService productService;
+    private final ShoppingCartService shoppingCartService;
+    private final ProductService productService;
+    private final CartItemService cartItemService;
     @Autowired
-    public  ShopCartController(ShoppingCartService shoppingCartService , ProductService productService){
+    public  ShopCartController(ShoppingCartService shoppingCartService , ProductService productService ,CartItemService cartItemService){
         this.shoppingCartService = shoppingCartService;
         this.productService = productService;
+        this.cartItemService = cartItemService;
     }
     @GetMapping("allCarts")
-      public  List<ShopCart> getAllShopCart(){
-        List<ShopCart> shopCarts = shoppingCartService.shopCarts();
-        return  shopCarts;
+      public String  getAllShopCart( Model model){
+        List<ShopCart> cartList = shoppingCartService.allShopCart();
+       model.addAttribute("shopCart" ,cartList);
+
+     return  "productDetail";
       }
 
-    @PostMapping("/add")
-    public void addToCart( @RequestParam Long productId, @RequestParam int quantity){
-         shoppingCartService.addCart( productId, quantity);
-//        Product product = productService.getProductById(productId);
-//        model.addAttribute("shopCart",shopCart);
-//        model.addAttribute("product",product);
-//         return "redirect:/getProduct/{productId}";
-
-    }
 
     @PostMapping("addCart")
-    public ShopCart ShopCart(@RequestBody CartItem cartItem){
-        return shoppingCartService.cart(cartItem);
-    }
-
-    @PostMapping("subTotal/{cartItemId}")
-    public double getSubTotal( @PathVariable  Long cartItemId){
-       return    shoppingCartService.subTotal(cartItemId);
+    public String  ShopCart(@RequestBody CartItem cartItem){
+        shoppingCartService.cart(cartItem);
+        return " ";
     }
 
     @GetMapping("/{cartId}/total")
     public Double allAmount(@PathVariable Long cartId){
-       return shoppingCartService.tAmount(cartId);
+        return shoppingCartService.tAmount(cartId);
     }
+
+    @PostMapping("subTotal/{cartItemId}")
+    public double getSubTotal( @PathVariable  Long cartItemId){
+       return    cartItemService.subTotal(cartItemId);
+    }
+
+     @DeleteMapping("removeItem/{cartId}")
+    public  void   removeCartItem(@PathVariable Long cartId ){
+       shoppingCartService.deleteCartItem(cartId);
+    }
+
 
 }

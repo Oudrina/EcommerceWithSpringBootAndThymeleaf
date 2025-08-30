@@ -22,8 +22,8 @@
 
     <h3 class="logo">Logo</h3>
 
-    <div class="icons " >
-        <span><i class='bx bx-sun' ></i></span>
+    <div class="icons ">
+        <span><i class='bx bx-sun'></i></span>
         <span class="cartIcon"><i class='bx bx-cart'></i>
               <span class="quantity">0</span>
               </span>
@@ -63,7 +63,6 @@
     </div>
 
 
-
 </div>
 
 <div class="product-wrapper">
@@ -71,7 +70,7 @@
         <img src="images/product1.jpg" alt="Product1">
         <div class="product-description">
             <a th:href="@{getProduct/{productId}(productId = ${product.productId})}">
-                <span  th:text="${product.name}" class="name" >Perfume</span>
+                <span th:text="${product.name}" class="name">Perfume</span>
             </a><br>
             <span class="price" th:text="${product.price}">$400.0</span>
 
@@ -89,7 +88,6 @@
     </div>
 
 
-
 </div>
 
 
@@ -100,15 +98,15 @@
         Cart Items
     </h1>
 
-    <div class="cartItems" th:each="item : ${shopCart}">
+    <div class="cartItems ">
 
         <img src="images/product1.jpg" alt="product1">
         <span>
-           <h5 class="name" th:text="${item.product.name}">Perfume</h5>
-           <p class="price" >$300</p>
+           <h5 class="name" th:text="${cartItem?.product?.name}">Perfume</h5>
+           <p class="price" th:text="${cartItem?.product?.price}">$300</p>
         </span>
 
-        <input  type="number" name="quantity" id="quantity" placeholder="1">
+        <input type="number" name="quantity" id="quantity" placeholder="1">
 
         <button class="btn">delete</button>
     </div>
@@ -153,7 +151,6 @@
         heart.addEventListener("click",function(){
         heart.classList.toggle("liked")
     });
-
 
 
 </script>
