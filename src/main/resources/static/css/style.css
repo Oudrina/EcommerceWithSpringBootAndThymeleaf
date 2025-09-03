@@ -132,13 +132,15 @@ column-gap: 50px;
     align-items: center;
     border-radius: 5px;
     padding: .4em;
+        margin-bottom: .4em;
+
  }
 
  .sidebar .cartItems input{
     width: 30px;
     height: 20px;
 
- }
+}
 
  .cartItems .btn{
     outline: none;

@@ -33,10 +33,12 @@ public class ShoppingCartService {
         List<ShopCart> shopCarts = shoppingCartRepo.findAll();
 
         for (ShopCart cart : shopCarts) {
-            cart.getItemList();
-        }
-        return shopCarts;
+
+                cart.getItemList();
+
+        } return shopCarts;
     }
+
 
 
     public ShopCart addCart(Long productId, int quantity) {

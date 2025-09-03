@@ -36,9 +36,17 @@ public class ProductController {
 
     }
 
-    @PostMapping("add")
-    public Product addProduct( @RequestBody  Product product){
-        return productService.addProduct(product);
+    @GetMapping("/create")
+      public String createProduct(Model model){
+        Product product = new Product();
+        model.addAttribute("product", product);
+        return "AddProduct";
+    }
+    @PostMapping("/add")
+    public String addProduct( @ModelAttribute Product product ,Model model){
+        Product product1 = productService.addProduct(product);
+        model.addAttribute("product" , product1);
+        return "redirect:/product/all";
     }
 
     @DeleteMapping("/delete/{id}")

@@ -16,23 +16,24 @@
 
     </div>
 
-    <div class="product-detail-wrapper">
+    <form class="product-detail-wrapper" method="post" th:object="${cartItem}" th:action="@{/cart/addCart}">
         <img th:src="@{/product1.png}" alt="Product1">
         <div class="product-detail">
-            <p class="name" th:text="${product.name}">Perfume</p>
+            <p class="name" >Perfume</p>
             <p class="descript">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Fuga veritatis non maxime beatae odio laudantium </p>
             <p class="stockAvailaibity">In Stock</p>
             <input type="number" name="quantity" id="quantity" placeholder="1" class="quantity">
-            <p class="price" th:text="  ${product.price}">$200.00</p>
+            <p class="price">$200.00</p>
 
             <div class="btn">
-                <a th:href="@{card/addCard}">Add to Cart</a>
+<!--                <a th:href="@{card/addCard}">Add to Cart</a>-->
+                <button class="btn">Add to cart</button>
             </div>
         </div>
 
-    </div>
+    </form>
 
     <aside th:insert="~{products :: sidebar}">
 

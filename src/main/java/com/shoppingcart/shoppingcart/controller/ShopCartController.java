@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -34,14 +35,15 @@ public class ShopCartController {
         List<ShopCart> cartList = shoppingCartService.allShopCart();
        model.addAttribute("shopCart" ,cartList);
 
-     return  "productDetail";
+     return  "redirect:/product/all";
       }
 
 
     @PostMapping("addCart")
-    public String  ShopCart(@RequestBody CartItem cartItem){
-        shoppingCartService.cart(cartItem);
-        return " ";
+    public String  ShopCart(@ModelAttribute CartItem cartItem,Model model){
+          ShopCart shopCart = shoppingCartService.cart(cartItem);
+        model.addAttribute("shopCart",shopCart);
+        return "products";
     }
 
     @GetMapping("/{cartId}/total")

@@ -98,12 +98,14 @@
         Cart Items
     </h1>
 
-    <div class="cartItems ">
 
-        <img src="images/product1.jpg" alt="product1">
-        <span>
-           <h5 class="name" th:text="${cartItem?.product?.name}">Perfume</h5>
-           <p class="price" th:text="${cartItem?.product?.price}">$300</p>
+    <div th:each="cart : ${shopCart}" class="cart-wrapper">
+    <div class="cartItems " th:each="item : ${cart.itemList}">
+
+        <img th:src="@{images/product1.jpg}" alt="product1">
+        <span th:if="${item != null}">
+           <h5 class="name" th:text="${item.product.name}">Perfume</h5>
+           <p class="price" th:text="${item.product.price}">$300</p>
         </span>
 
         <input type="number" name="quantity" id="quantity" placeholder="1">
@@ -111,6 +113,7 @@
         <button class="btn">delete</button>
     </div>
 
+    </div>
 
     <div class="totalPrice">
         <span>0</span>
@@ -121,20 +124,22 @@
     </div>
 
 
+
+
 </div>
 
-<footer class="footer">
+<!--<footer class="footer">-->
 
-    <p>&copy; 2025 ShopEase. All Rights Reserved.</p>
-    <div class="contact">
-        <h6>Contactus</h6>
-        <p>0542885742</p>
-        <p>0542885742</p>
+<!--    <p>&copy; 2025 ShopEase. All Rights Reserved.</p>-->
+<!--    <div class="contact">-->
+<!--        <h6>Contactus</h6>-->
+<!--        <p>0542885742</p>-->
+<!--        <p>0542885742</p>-->
 
 
-    </div>
+<!--    </div>-->
 
-</footer>
+<!--</footer>-->
 
 <script>
 
